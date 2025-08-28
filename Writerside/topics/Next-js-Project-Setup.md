@@ -10,7 +10,7 @@ npx create-next-app
 
 ## Project Structure
 
-![] (assets/Screenshot (291).png)
+![](Screenshot (291).png){ width="450" }
 
 The app folder is the container for the routing system.
 The app folder has the layout file which is a basic react component which returns a html and body element. There is also the page file which represents the homepage.
