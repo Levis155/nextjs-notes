@@ -7,4 +7,5 @@
                  start-page="Introduction.md">
 
     <toc-element topic="Introduction.md"/>
+    <toc-element topic="Next-js-Project-Setup.md"/>
 </instance-profile>
