@@ -9,4 +9,5 @@
     <toc-element topic="Introduction.md"/>
     <toc-element topic="Next-js-Project-Setup.md"/>
     <toc-element topic="Routing-and-Navigation.md"/>
+    <toc-element topic="Client-vs-Server-components.md"/>
 </instance-profile>
