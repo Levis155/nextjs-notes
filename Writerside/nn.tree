@@ -14,5 +14,6 @@
     <toc-element topic="Static-and-Dynamic-Rendering.md"/>
     <toc-element topic="Styling-Next-js-Applications.md">
         <toc-element topic="Global-Styles.md"/>
+        <toc-element topic="CSS-Modules.md"/>
     </toc-element>
 </instance-profile>
