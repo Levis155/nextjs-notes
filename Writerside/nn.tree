@@ -12,4 +12,7 @@
     <toc-element topic="Client-vs-Server-components.md"/>
     <toc-element topic="Data-Fetching.md"/>
     <toc-element topic="Static-and-Dynamic-Rendering.md"/>
+    <toc-element topic="Styling-Next-js-Applications.md">
+        <toc-element topic="Global-Styles.md"/>
+    </toc-element>
 </instance-profile>
