@@ -27,7 +27,7 @@ The beauty of data fetching in server components is that Server Components are d
 
 ```tsx
 interface User {
-    id: number;
+    id: number; 
     name: string;
 }
 
