@@ -6,7 +6,6 @@
                  name="Next.js Notes"
                  start-page="Introduction.md">
 
-    <toc-element topic="Introduction.md"/>
     <toc-element topic="Next-js-Project-Setup.md"/>
     <toc-element topic="Routing-and-Navigation.md"/>
     <toc-element topic="Client-vs-Server-components.md"/>
@@ -17,5 +16,9 @@
         <toc-element topic="CSS-Modules.md"/>
         <toc-element topic="Tailwind-CSS.md"/>
         <toc-element topic="DaisyUI.md"/>
+    </toc-element>
+    <toc-element topic="Introduction.md"/>
+    <toc-element topic="Routing-and-Navigation-Deepdive.md">
+        <toc-element topic="Dynamic-Routes.md"/>
     </toc-element>
 </instance-profile>
