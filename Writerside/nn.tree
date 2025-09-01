@@ -16,5 +16,6 @@
         <toc-element topic="Global-Styles.md"/>
         <toc-element topic="CSS-Modules.md"/>
         <toc-element topic="Tailwind-CSS.md"/>
+        <toc-element topic="DaisyUI.md"/>
     </toc-element>
 </instance-profile>
