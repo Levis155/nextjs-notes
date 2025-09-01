@@ -6,8 +6,9 @@
                  name="Next.js Notes"
                  start-page="Introduction.md">
 
+    <toc-element topic="Introduction.md"/>
     <toc-element topic="Next-js-Project-Setup.md"/>
-    <toc-element topic="Routing-and-Navigation.md"/>
+    <toc-element topic="Routing-and-Navigation-Overview.md"/>
     <toc-element topic="Client-vs-Server-components.md"/>
     <toc-element topic="Data-Fetching.md"/>
     <toc-element topic="Static-and-Dynamic-Rendering.md"/>
@@ -19,8 +20,9 @@
     </toc-element>
     <toc-element topic="Routing-and-Navigation-Deepdive.md">
         <toc-element topic="Dynamic-Routes.md">
-            <toc-element topic="Introduction.md"/>
-            <toc-element topic="Catch-all-Segments.md"/>
         </toc-element>
+        <toc-element topic="Catch-all-Segments.md">
+        </toc-element>
+        <toc-element topic="Accessing-Query-String-Parameters.md"/>
     </toc-element>
 </instance-profile>
