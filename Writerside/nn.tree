@@ -25,4 +25,5 @@
         </toc-element>
         <toc-element topic="Accessing-Query-String-Parameters.md"/>
     </toc-element>
+    <toc-element topic="Layout.md"/>
 </instance-profile>
