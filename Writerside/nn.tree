@@ -28,5 +28,6 @@
     <toc-element topic="Layout.md"/>
     <toc-element topic="Navigation-Deepdive.md">
         <toc-element topic="The-Link-Component.md"/>
+        <toc-element topic="Programmatic-Navigation.md"/>
     </toc-element>
 </instance-profile>
