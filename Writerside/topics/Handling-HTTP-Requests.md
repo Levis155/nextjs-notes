@@ -59,4 +59,32 @@ import { NextRequest, NextResponse } from "next/server";
 
 ```
 
-The above function returns whatever we've sent to the server.
+The above function returns the object we've sent to the server.
+
+## Updating an Object
+
+To update a user we should send a request to an endpoint representing an individual user e.g. `localhost:300/api/users/1` including the user object in the body of the request.
+
+We can use PUT or PATCH functions for updating an object but technically speaking we should use PUT for replacing an object and PATCH for updating one or more properties.
+
+**app/api/users/[id]/route.tsx:**
+
+```TSX
+import { NextRequest, NextResponse } from "next/server";
+
+export async function PUT (request: NextRequest, {params}: {params: {id: number}}) {
+    const body = await request.json();
+
+    if (!body.name) {
+        return NextResponse.json({error: 'Name is required'}, {status: 400})
+    }
+
+    if (params.id > 10) {
+        return NextResponse.json({error: "User not found."}, {status: 404})
+    }
+
+    return NextResponse.json({id: 1, name: body.name})
+}
+```
+
+The above function simulates how object updates are handled in real-world scenarios when interacting with databases.
