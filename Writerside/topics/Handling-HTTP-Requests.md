@@ -87,4 +87,37 @@ export async function PUT (request: NextRequest, {params}: {params: {id: number}
 }
 ```
 
-The above function simulates how object updates are handled in real-world scenarios when interacting with databases.
+The above function simulates how object updates are handled in real-world scenarios when interacting with databases. i.e.
+- Validate request body
+- If invalid return 400
+- Fetch the user with the given id
+- If doesn't exist, return 404
+- Update the user
+- Return the updated user
+
+## Deleting an Object
+
+When deleting an object we need the parameters passed in the PUT function too.
+
+**app/api/users/[id]/route.tsx:**
+
+```TSX
+import { NextRequest, NextResponse } from "next/server";
+
+export function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: number } }
+) {
+  if (params.id > 10) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
+
+  return NextResponse.json({});
+}
+```
+
+The above delete function simulates the following scenario:
+- Fetch the user from the db
+- If not found, return 404
+- Delete the user
+- Return 200
