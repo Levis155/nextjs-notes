@@ -35,4 +35,5 @@
         <toc-element topic="Handling-Not-Found-Errors.md"/>
         <toc-element topic="Handling-Unexpected-Errors.md"/>
     </toc-element>
+    <toc-element topic="Getting-a-Collection-of-Objects.md"/>
 </instance-profile>
