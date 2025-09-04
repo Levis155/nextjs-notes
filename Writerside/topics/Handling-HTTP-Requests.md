@@ -42,3 +42,21 @@ export function GET(
 ```
 
 For demonstration purposes, the above function returns a status of 404 if the id is more than 10 and returns a user object if the id is not.
+
+## Creating an Object
+
+To create an object i.e. a user object, we send a request to the user's endpoint and include the user object in the body of the request.
+
+**app/api/users/route.tsx:**
+
+```TSX
+import { NextRequest, NextResponse } from "next/server";
+ 
+ export async function POST(request: NextRequest) {
+   const body = await request.json(); 
+   return NextResponse.json(body);
+}
+
+```
+
+The above function returns whatever we've sent to the server.
