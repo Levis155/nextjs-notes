@@ -76,7 +76,7 @@ export default function RootLayout({
 ```TSX
 import React from 'react'
 
-const loading = () => {
+const Loading = () => {
   return (
     <div>
       Loading...
@@ -84,6 +84,6 @@ const loading = () => {
   )
 }
 
-export default loading
+export default Loading
 
 ```
