@@ -30,4 +30,5 @@
         <toc-element topic="The-Link-Component.md"/>
         <toc-element topic="Programmatic-Navigation.md"/>
     </toc-element>
+    <toc-element topic="Showing-Loading-UIs.md"/>
 </instance-profile>
