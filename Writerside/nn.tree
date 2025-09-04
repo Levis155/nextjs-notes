@@ -33,5 +33,6 @@
     <toc-element topic="Showing-Loading-UIs.md"/>
     <toc-element topic="Error-Handling.md">
         <toc-element topic="Handling-Not-Found-Errors.md"/>
+        <toc-element topic="Handling-Unexpected-Errors.md"/>
     </toc-element>
 </instance-profile>
