@@ -40,5 +40,6 @@
     <toc-element topic="Database-Integration.md">
         <toc-element topic="Installing-MySQL.md"/>
         <toc-element topic="Setting-Up-Prisma.md"/>
+        <toc-element topic="Defining-Models.md"/>
     </toc-element>
 </instance-profile>
