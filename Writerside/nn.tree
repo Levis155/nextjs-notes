@@ -36,4 +36,5 @@
         <toc-element topic="Handling-Unexpected-Errors.md"/>
     </toc-element>
     <toc-element topic="Handling-HTTP-Requests.md"/>
+    <toc-element topic="Validating-Requests-with-Zod.md"/>
 </instance-profile>
