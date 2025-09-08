@@ -37,4 +37,7 @@
     </toc-element>
     <toc-element topic="Handling-HTTP-Requests.md"/>
     <toc-element topic="Validating-Requests-with-Zod.md"/>
+    <toc-element topic="Database-Integration.md">
+        <toc-element topic="Installing-MySQL.md"/>
+    </toc-element>
 </instance-profile>
