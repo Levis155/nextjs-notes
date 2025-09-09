@@ -42,5 +42,6 @@
         <toc-element topic="Setting-Up-Prisma.md"/>
         <toc-element topic="Defining-Models.md"/>
         <toc-element topic="Creating-Migrations.md"/>
+        <toc-element topic="Creating-a-Prisma-Client.md"/>
     </toc-element>
 </instance-profile>
