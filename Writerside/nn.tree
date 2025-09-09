@@ -38,6 +38,7 @@
     <toc-element topic="Handling-HTTP-Requests.md"/>
     <toc-element topic="Validating-Requests-with-Zod.md"/>
     <toc-element topic="Database-Integration.md">
+        <toc-element topic="Getting-Data.md"/>
         <toc-element topic="Installing-MySQL.md"/>
         <toc-element topic="Setting-Up-Prisma.md"/>
         <toc-element topic="Defining-Models.md"/>
