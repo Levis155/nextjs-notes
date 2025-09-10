@@ -47,5 +47,6 @@
     </toc-element>
     <toc-element topic="Uploading-Files.md">
         <toc-element topic="Setting-Up-Cloudinary.md"/>
+        <toc-element topic="Uploading-to-Cloudinary.md"/>
     </toc-element>
 </instance-profile>
