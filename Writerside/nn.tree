@@ -43,7 +43,6 @@
         <toc-element topic="Defining-Models.md"/>
         <toc-element topic="Creating-Migrations.md"/>
         <toc-element topic="Creating-a-Prisma-Client.md"/>
-        <toc-element topic="Getting-Data.md"/>
-        <toc-element topic="Creating-Data.md"/>
+        <toc-element topic="Performing-CRUD-Operations-on-the-database.md"/>
     </toc-element>
 </instance-profile>
