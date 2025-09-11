@@ -52,5 +52,6 @@
     </toc-element>
     <toc-element topic="Authentication.md">
         <toc-element topic="Setting-Up-Auth-js.md"/>
+        <toc-element topic="Configuring-Google-Provider.md"/>
     </toc-element>
 </instance-profile>
