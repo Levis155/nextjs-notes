@@ -8,7 +8,7 @@ It has the uploadPreset attribute where you provide the name of your upload pres
 
 Upload presets define a set of parameters to apply during uploads and are configured in the uploads section of the cloudinary platform's settings tab.
 
-![](Screenshot (294).png)
+![](Screenshot (294).png) { width="450" }
 
 **app/upload/page.tsx:**
 
