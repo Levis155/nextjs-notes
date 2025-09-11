@@ -50,4 +50,7 @@
         <toc-element topic="Uploading-to-Cloudinary.md"/>
         <toc-element topic="Showing-Uploaded-Images.md"/>
     </toc-element>
+    <toc-element topic="Authentication.md">
+        <toc-element topic="Setting-Up-Auth-js.md"/>
+    </toc-element>
 </instance-profile>
