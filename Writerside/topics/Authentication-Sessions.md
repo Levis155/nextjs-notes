@@ -10,7 +10,7 @@ To access the authentication session on the client we have to head over to our r
 
 **Create the AuthProvider Component:**
 
-`app/auth/Provider.tsx`
+`app/Provider.tsx`
 
 ```TSX
 import React, { ReactNode } from 'react'
@@ -35,7 +35,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "./Navbar";
-import AuthProvider from "./auth/Provider";
+import AuthProvider from "./Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -94,3 +94,68 @@ export default Navbar
 
 
 > Because we're using the useSession hook, and we're using React Contex we have to mark the Navbar as a client component.
+
+## Accessing Sessions on the Server
+
+To access sessions on the server, say for instance we wanted to access the session in our homepage, we begin by calling the `auth()` function exported from `/auth.ts.` This returns a session object that we can use to access the session properties.
+
+**app/page.tsx:**
+
+```TSX
+import Link from "next/link";
+import ProductCard from "./components/ProductCard/ProductCard";
+import { auth } from "@/auth";
+
+export default async function Home() {
+  const session = await auth();
+
+  return (
+    <main>
+      <h1>Hello {session && <span>{session.user!.name}</span>}</h1>
+      <Link href="/users">Users</Link>
+      <ProductCard />
+    </main>
+  )
+}
+```
+
+## Signing Out Users
+
+To sign out a user the `signOut()` function from `next-auth/react` is called. This function ends the user's session, logging them out. The UI automatically updates to reflect the change in authentication status.
+
+**app/navbar.tsx:**
+
+```TSX
+"use client";
+
+import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
+import React from "react";
+
+const Navbar = () => {
+  const { status, data: session } = useSession();
+
+  return (
+    <div className="flex bg-slate-200 p-5 space-x-3">
+      <Link href="/" className="mr-5">
+        Next.js
+      </Link>
+      <Link href="/users">Users</Link>
+      {status === "loading" && <div>Loading</div>}
+      {status === "authenticated" && (
+        <div>
+          {session.user!.name}
+          <button className="ml-3" onClick={() => signOut()}>
+            Sign Out
+          </button>
+        </div>
+      )}
+      {status === "unauthenticated" && (
+        <button onClick={() => signIn("google")}>Login</button>
+      )}
+    </div>
+  );
+};
+
+export default Navbar;
+```

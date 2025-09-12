@@ -29,42 +29,48 @@ After creating the OAuth client you're issued with the client ID along with the 
 
 ## Creating a Google Provider
 
-Next you need to create a Google Provider. In the route file import Google provider from the next-auth package and set it as one of the providers as shown below:
+Next you need to create a Google Provider. In the configuration file (`auth.ts`) import Google provider from the next-auth package and set it as one of the providers as shown below:
 
-**/api/auth/[...nextauth]/route.ts:**
+**/auth.ts:**
 
 ```TS
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google"
+import GoogleProvider from "next-auth/providers/google";
 
-const handler = NextAuth({
-    providers: [
-        GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        })
-    ]
-})
+export const { auth, handlers, signIn, signOut } = NextAuth({
+  providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+  ],
+});
 
-export { handler as GET, handler as POST}
 ```
 
-## Adding a Sign-in Link
+## Adding a Sign-in Button
 
-For the final step add the sign-in link to the navbar as follows:
+For the final step add the sign-in button to the navbar as follows:
 
 **app/Navbar.tsx:**
 
 ```TSX
+'use client';
+
+import { useSession, signIn } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 
 const Navbar = () => {
+  const {status, data: session} = useSession();
+  
   return (
     <div className='flex bg-slate-200 p-5 space-x-3'>
       <Link href="/" className='mr-5'>Next.js</Link>
       <Link href="/users">Users</Link>
-      <Link href="/api/auth/signin">Login</Link>
+      {status === 'loading' && <div>Loading</div>}
+      {status === 'authenticated' && <div>{session.user!.name}</div>}
+      {status === 'unauthenticated' && <button onClick={() => signIn('google')}>Login</button>}
     </div>
   )
 }
@@ -72,3 +78,6 @@ const Navbar = () => {
 export default Navbar
 
 ```
+
+The `useSession()` hook provides the user's session data and the current status of the session ("loading", "authenticated", or "unauthenticated").
+The `signIn()` function initiates the sign-in process, redirecting the user to the sign-in page. Here you specify the provider i.e. google.

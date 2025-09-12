@@ -11,23 +11,33 @@ Instead of writing all the code to manage login, tokens, sessions, and third-par
 Install Auth.js into your project by running the following command:
 
 ```Bash
-npm install next-auth@beta
+npm install next-auth
 ```
 
-## Adding Route handlers
+## Creating the Auth.js Configuration File
 
-Auth.js actually uses route handlers for its authentication endpoints. For example, you set up an `/api/auth/[...nextauth]/route.ts` file, and Auth.js puts all the login/logout/session logic there.
+Create a configuration file (e.g., `auth.ts` in the project root) that defines your authentication settings. This file will export handlers for API requests and contain the Auth object with configuration options like providers. We'll come back to this object.
 
-In this file you have to create a handler function by importing and calling NextAuth. We pass a configuration object to NextAuth which we'll come back to.
-
-We then export the handler function with 2 different names i.e. GET and POST. This means any GET and POST request sent to this endpoint will be handled inside the handler function.
+**/auth.ts:**
 
 ```TS
 import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
 
-const handler = NextAuth({})
+export const { auth, handlers, signIn, signOut } = NextAuth({});
 
-export { handler as GET, handler as POST}
+```
+
+## Creating the Auth.js API Route
+
+Create a `app/api/auth/[...nextauth]/route.ts` file to serve as the entry point for authentication API calls by importing and exporting handlers from the main Auth.js configuration file. This catch-all route handler allows Auth.js to manage all related API endpoints under `/api/auth/*`.
+
+**app/api/auth/[...nextauth]/route.ts:**
+
+```TS
+import { handlers } from "@/auth";
+
+export const { GET, POST } = handlers;
 ```
 
 ## Creating .env Variables
