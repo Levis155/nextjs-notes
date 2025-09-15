@@ -54,5 +54,6 @@
         <toc-element topic="Setting-Up-Auth-js.md"/>
         <toc-element topic="Configuring-Google-Provider.md"/>
         <toc-element topic="Authentication-Sessions.md"/>
+        <toc-element topic="Protecting-Routes.md"/>
     </toc-element>
 </instance-profile>
