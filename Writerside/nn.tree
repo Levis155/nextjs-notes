@@ -55,5 +55,6 @@
         <toc-element topic="Configuring-Google-Provider.md"/>
         <toc-element topic="Authentication-Sessions.md"/>
         <toc-element topic="Protecting-Routes.md"/>
+        <toc-element topic="Database-Adapters.md"/>
     </toc-element>
 </instance-profile>
