@@ -1,4 +1,4 @@
-# Sending Emails
+# Sending Emails With React Email
 
 ## Setting Up React Email
 
@@ -36,7 +36,7 @@ In the emails folder create a file e.g. `WelcomeTemplate.tsx` that returns a Rea
 import React from 'react'
 import { Html, Body, Container, Text, Link, Preview} from "@react-email/components"
 
-const WelcomeTemplate = () => {
+const WelcomeTemplate = ({name}: {name: string}) => {
   return (
     <Html>
         <Preview>Welcome Aboard!</Preview>
@@ -67,7 +67,7 @@ There are two ways to style email templates:
 import React, { CSSProperties } from 'react'
 import { Html, Body, Container, Text, Link, Preview} from "@react-email/components"
 
-const WelcomeTemplate = () => {
+const WelcomeTemplate = ({name}: {name: string}) => {
   return (
     <Html>
         <Preview>Welcome Aboard!</Preview>
@@ -106,7 +106,7 @@ import {
   Tailwind,
 } from "@react-email/components";
 
-const WelcomeTemplate = () => {
+const WelcomeTemplate = ({name}: {name: string}) => {
   return (
     <Html>
       <Preview>Welcome Aboard!</Preview>
@@ -125,3 +125,46 @@ const WelcomeTemplate = () => {
 export default WelcomeTemplate;
 
 ```
+
+## Sending Emails
+
+For sending emails you can choose from a variety of services. One particular service that facilitates sending of emails is **Resend.**
+
+To get started with using Resend, follow the following steps:
+
+- Head over to [resend.com](https://resend.com/) and create an account.
+
+- Once logged in you can generate an API key in the homepage and save this key in your .env file 
+`RESEND_API_KEY='YOUR RESEND API KEY'`
+
+- Install Resend by running the following command:
+
+```Bash
+npm i resend@1.0.0
+```
+
+- Create an api endpoint for sending emails. 
+**app/api/send-email/route.tsx:**
+
+```TSX
+import WelcomeTemplate from "@/emails/WelcomeTemplate";
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function POST() {
+    resend.emails.send({
+        from: 'example@your-domain.com',
+        to: "random-email@gmail.com",
+        subject: "RANDOM SUBJECT",
+        react: <WelcomeTemplate name="John" />
+    })
+
+    return NextResponse.json({});
+}
+```
+
+> Note that this is just for demonstration as in a real-world application you wouldn't have an endpoint for sending emails, but instead sending emails should be part of your business operations. e.g. when a customer places an order they would typically receive a confirmation email.
+
+> Another thing to note is that the 'from' email should be from a domain that you own (You cannot use free services such as gmail, yahoo e.t.c). After obtaining your domain you should log in to Resend and configure it in the Domains page.
