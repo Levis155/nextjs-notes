@@ -52,3 +52,7 @@ const WelcomeTemplate = () => {
 
 export default WelcomeTemplate
 ```
+
+## Previewing Emails
+
+React-Email gives us a tool for previewing emails. To use this tool we have to run `npm run preview-email`. Before running this command however add `react-email` folder to your .gitignore file to prevent it from being tracked by git. This is because the above command creates an application for viewing emails with thousands of files which we don't want to track as they're not part of our source code.
