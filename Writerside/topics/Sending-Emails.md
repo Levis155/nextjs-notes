@@ -25,3 +25,30 @@ npm i react-email @react-email/components
 ```
 
 - For the final setup step, create an emails folder in the root of your project where you'll add react components that represent your email templates.
+
+## Creating an Email Template
+
+In the emails folder create a file e.g. `WelcomeTemplate.tsx` that returns a React component representing a template of the email.
+
+**./emails/WelcomeTemplate.tsx:**
+
+```TSX
+import React from 'react'
+import { Html, Body, Container, Text, Link, Preview} from "@react-email/components"
+
+const WelcomeTemplate = () => {
+  return (
+    <Html>
+        <Preview>Welcome Aboard!</Preview>
+        <Body>
+            <Container>
+                <Text>Hello World!</Text>
+                <Link href='https://www.random-site.com'>Random Site</Link>
+            </Container>
+        </Body>
+    </Html>
+  )
+}
+
+export default WelcomeTemplate
+```
