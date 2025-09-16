@@ -56,3 +56,72 @@ export default WelcomeTemplate
 ## Previewing Emails
 
 React-Email gives us a tool for previewing emails. To use this tool we have to run `npm run preview-email`. Before running this command however add `react-email` folder to your .gitignore file to prevent it from being tracked by git. This is because the above command creates an application for viewing emails with thousands of files which we don't want to track as they're not part of our source code.
+
+## Styling Emails
+
+There are two ways to style email templates:
+
+- Using CSS properties
+
+```TSX
+import React, { CSSProperties } from 'react'
+import { Html, Body, Container, Text, Link, Preview} from "@react-email/components"
+
+const WelcomeTemplate = () => {
+  return (
+    <Html>
+        <Preview>Welcome Aboard!</Preview>
+        <Body style={body}>
+            <Container>
+                <Text style={heading}>Hello World!</Text>
+                <Link href='https://www.random-site.com'>Random Site</Link>
+            </Container>
+        </Body>
+    </Html>
+  )
+}
+
+const body: CSSProperties = {
+    background: "#fff"
+}
+
+const heading: CSSProperties = {
+    fontSize: '32px'
+}
+
+export default WelcomeTemplate
+
+```
+
+- Using Tailwind
+
+```TSX
+import {
+  Html,
+  Body,
+  Container,
+  Text,
+  Link,
+  Preview,
+  Tailwind,
+} from "@react-email/components";
+
+const WelcomeTemplate = () => {
+  return (
+    <Html>
+      <Preview>Welcome Aboard!</Preview>
+      <Tailwind>
+        <Body className="bg-white">
+          <Container>
+            <Text className="font-bold text-3xl">Hello World!</Text>
+            <Link href="https://www.random-site.com">Random Site</Link>
+          </Container>
+        </Body>
+      </Tailwind>
+    </Html>
+  );
+};
+
+export default WelcomeTemplate;
+
+```
