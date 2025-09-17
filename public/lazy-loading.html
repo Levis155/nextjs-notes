@@ -1,0 +1,128 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2025-09-17T13:07:43.2003528"><title>Lazy Loading | Next.js Notes</title><script type="application/json" id="virtual-toc-data">[{"id":"lazy-loading-client-components","level":0,"title":"Lazy Loading Client Components","anchor":"#lazy-loading-client-components"},{"id":"lazy-loading-third-party-libraries","level":0,"title":"Lazy Loading third-party Libraries","anchor":"#lazy-loading-third-party-libraries"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Lazy Loading | Next.js Notes"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Next.js Notes Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/lazy-loading.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Lazy Loading | Next.js Notes"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/lazy-loading.html#webpage",
+    "url": "writerside-documentation/lazy-loading.html",
+    "name": "Lazy Loading | Next.js Notes",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Next.js Notes Help"
+}</script><!-- End Schema.org --></head><body data-id="Lazy-Loading" data-main-title="Lazy Loading" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="Optimizations.md|Optimizations"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Next.js Notes  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="Lazy-Loading" id="Lazy-Loading.md">Lazy Loading</h1><p id="z11g87d_3">Lazy loading is a strategy for loading client components or third-party libraries in the future when we need them typically as a result of user-interaction. e.g. button-clicks</p><section class="chapter"><h2 id="lazy-loading-client-components" data-toc="lazy-loading-client-components">Lazy Loading Client Components</h2><p id="z11g87d_6">An instance in which we could apply lazy loading could be if we had a heavy component, and we needed to render it as a result of clicking a button as shown below:</p><p id="z11g87d_7"><span class="control" id="z11g87d_19">app/components/HeavyComponent.tsx:</span></p><div class="code-block" data-lang="tsx">
+import React from 'react'
+
+const HeavyComponent = () =&gt; {
+  return (
+    &lt;div&gt;
+      My Heavy Component
+    &lt;/div&gt;
+  )
+}
+
+export default HeavyComponent
+
+</div><p id="z11g87d_9"><span class="control" id="z11g87d_20">app/page.tsx:</span></p><div class="code-block" data-lang="tsx">
+'use client';
+
+import { useState } from &quot;react&quot;;
+import HeavyComponent from &quot;./components/HeavyComponent/HeavyComponent&quot;;
+
+export default function Home() {
+  const [isVisible, setIsVisible] = useState(false)
+  return (
+    &lt;main&gt;
+      &lt;button onClick={() =&gt; {setIsVisible(true)}}&gt;Show&lt;/button&gt;
+      {isVisible &amp;&amp; &lt;HeavyComponent /&gt;} 
+    &lt;/main&gt;
+  );
+}
+</div><p id="z11g87d_11">With the above implementation the <code class="code" id="z11g87d_21">HeavyComponent</code> is still included in our bundle even though we're showing it dynamically. This is because the HeavyComponent is statically imported at the top, so when Next.js builds our application it includes this component in the bundle for our page.</p><p id="z11g87d_12">To lazy load this, we have to use the dynamic function from Next.js as shown below:</p><p id="z11g87d_13"><span class="control" id="z11g87d_22">app/components/HeavyComponent.tsx:</span></p><div class="code-block" data-lang="tsx">
+'use client';
+
+import { useState } from &quot;react&quot;;
+import dynamic from &quot;next/dynamic&quot;;
+const HeavyComponent = dynamic(() =&gt; import('./components/HeavyComponent/HeavyComponent'))
+
+export default function Home() {
+  const [isVisible, setIsVisible] = useState(false)
+  return (
+    &lt;main&gt;
+      &lt;button onClick={() =&gt; {setIsVisible(true)}}&gt;Show&lt;/button&gt;
+      {isVisible &amp;&amp; &lt;HeavyComponent /&gt;} 
+    &lt;/main&gt;
+  );
+}
+</div><p id="z11g87d_15">When loading components dynamically, as a second argument to the dynamic function we can pass an options object. Here we can pass a loading function for showing a loading indicator when the component is being downloaded as show:</p><div class="code-block" data-lang="tsx">
+'use client';
+
+import { useState } from &quot;react&quot;;
+import dynamic from &quot;next/dynamic&quot;;
+const HeavyComponent = dynamic(() =&gt; import('./components/HeavyComponent/HeavyComponent'), {loading: () =&gt; &lt;p&gt;Loading...&lt;/p&gt;})
+
+export default function Home() {
+  const [isVisible, setIsVisible] = useState(false)
+  return (
+    &lt;main&gt;
+      &lt;button onClick={() =&gt; {setIsVisible(true)}}&gt;Show&lt;/button&gt;
+      {isVisible &amp;&amp; &lt;HeavyComponent /&gt;} 
+    &lt;/main&gt;
+  );
+}
+</div><p id="z11g87d_17">The other property that we have in this options object is ssr. When importing client components, by default they are pre-rendered on the server. Sometimes this can cause issues because when trying to access certain apis from the server, and they're not available you might end up getting errors. In such situations, you can disable pre-rendering on the server by setting ssr to false as shown:</p><div class="code-block" data-lang="tsx">
+&quot;use client&quot;;
+
+import { useState } from &quot;react&quot;;
+import dynamic from &quot;next/dynamic&quot;;
+const HeavyComponent = dynamic(
+  () =&gt; import(&quot;./components/HeavyComponent/HeavyComponent&quot;),
+  { loading: () =&gt; &lt;p&gt;Loading...&lt;/p&gt;, ssr: false }
+);
+
+export default function Home() {
+  const [isVisible, setIsVisible] = useState(false);
+  return (
+    &lt;main&gt;
+      &lt;button
+        onClick={() =&gt; {
+          setIsVisible(true);
+        }}
+      &gt;
+        Show
+      &lt;/button&gt;
+      {isVisible &amp;&amp; &lt;HeavyComponent /&gt;}
+    &lt;/main&gt;
+  );
+}
+
+</div></section><section class="chapter"><h2 id="lazy-loading-third-party-libraries" data-toc="lazy-loading-third-party-libraries">Lazy Loading third-party Libraries</h2><p id="z11g87d_23">We can use the lodash library which is a popular utility library for JavaScript to demonstrate lazy loading third-party libraries. This library is used to manipulate objects and arrays.</p><p id="z11g87d_24">Say we wanted to sort an array of users on the click of a button using this library, lazy loading it becomes a necessity if we want to factor optimization.</p><p id="z11g87d_25">To lazy load this library we should call the import function inside the click handler as shown below:</p><div class="code-block" data-lang="tsx">
+&quot;use client&quot;;
+
+
+export default function Home() {
+  return (
+    &lt;main&gt;
+      &lt;button
+        onClick={async () =&gt; {
+          const _ = (await import('lodash')).default;
+          
+          const users = [
+            {name: 'c'},
+            {name: 'b'},
+            {name: 'a'},
+          ]
+
+          const sorted = _.orderBy(users, ['name']);
+          console.log(sorted);
+        }}
+      &gt;
+        Show
+      &lt;/button&gt;
+    &lt;/main&gt;
+  );
+}
+</div></section><div class="last-modified">17 September 2025</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="search-engine-optimization.html" class="navigation-links__prev">Search Engine Optimization</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.22.0-b776/app.js"></script></body></html>
