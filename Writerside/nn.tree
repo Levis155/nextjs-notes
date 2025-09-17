@@ -59,4 +59,7 @@
         <toc-element topic="Congiguring-CredentialsProvider.md"/>
     </toc-element>
     <toc-element topic="Sending-Emails.md"/>
+    <toc-element topic="Optimizations.md">
+        <toc-element topic="Optimizing-Images.md"/>
+    </toc-element>
 </instance-profile>
