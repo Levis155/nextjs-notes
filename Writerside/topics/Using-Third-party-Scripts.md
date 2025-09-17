@@ -88,7 +88,6 @@ export default GoogleAnalyticsScript;
 ```TSX
 import "./globals.css";
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Inter } from "next/font/google";
 import Navbar from "./Navbar";
 import AuthProvider from "./Provider";

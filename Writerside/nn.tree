@@ -62,5 +62,6 @@
     <toc-element topic="Optimizations.md">
         <toc-element topic="Optimizing-Images.md"/>
         <toc-element topic="Using-Third-party-Scripts.md"/>
+        <toc-element topic="Using-Fonts.md"/>
     </toc-element>
 </instance-profile>
