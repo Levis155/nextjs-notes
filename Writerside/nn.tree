@@ -61,5 +61,6 @@
     <toc-element topic="Sending-Emails.md"/>
     <toc-element topic="Optimizations.md">
         <toc-element topic="Optimizing-Images.md"/>
+        <toc-element topic="Using-Third-party-Scripts.md"/>
     </toc-element>
 </instance-profile>
